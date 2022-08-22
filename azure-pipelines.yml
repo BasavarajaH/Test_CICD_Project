@@ -46,12 +46,13 @@ stages:
                  packagesPath: '$(Pipeline.Workspace)\drop\'
                  folderName: 'Finance'
                  entryPoints: 'Main.xaml'
+                 
   - stage: CopyFiles 
-    displayName: delete build artifact
+    displayName: copy build artifact
     dependsOn: DeploytoDEV
     condition: succeeded()
     jobs: 
-    - job: DeletePackage
+    - job: CopyPackage
       pool: Default
       steps:
       - task: CopyFiles@2
