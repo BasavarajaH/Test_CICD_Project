@@ -6,7 +6,8 @@
 trigger:
 - master
 
-
+variables:
+  - group: Orchestrator_Variables
 
 
 stages:
@@ -57,7 +58,7 @@ stages:
               inputs:
                  orchestratorConnection: 'Azure_Connection_to_Orchestrator-Test_GitHub_Pipeline'
                  packagesPath: '$(Pipeline.Workspace)\drop\'
-                 folderName: 'Finance'
+                 folderName: $(Folder_Name)
                  entryPoints: 'Main.xaml'
 
   - stage: CopyFiles 
