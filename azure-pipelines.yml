@@ -21,7 +21,7 @@ stages:
       - task: DeleteFiles@1
         inputs:
           SourceFolder: '$(Pipeline.Workspace)\drop\'
-          Contents: 'myFileShare'
+          Contents: '**/*'
 
   - stage: Build
     displayName: Build Package
