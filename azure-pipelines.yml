@@ -47,3 +47,15 @@ stages:
                  folderName: 'Finance'
                  entryPoints: 'Main.xaml'
 
+  - stage: Deletefile 
+    displayName: delete build artifact
+    dependsOn: Build
+    condition: succeeded()
+    jobs: 
+    - job: BuildPackage
+      pool: Default
+      steps:
+      - task: DeleteFiles@1
+        inputs:
+          SourceFolder: '$(Pipeline.Workspace)\drop\'
+          Contents: 'myFileShare'
