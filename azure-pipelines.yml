@@ -6,7 +6,7 @@
 trigger:
 - master
 
-pool: Default
+
 
 
 stages:
@@ -14,7 +14,7 @@ stages:
     displayName: Build Package
     jobs: 
     - job: BuildPackage
-
+      pool: Default
       steps:
       - task: UiPathPack@2
         inputs:
@@ -22,8 +22,8 @@ stages:
           projectJsonPath: '$(Build.SourcesDirectory)'
           outputType: 'Process'
           orchestratorConnection: 'Azure_Connection_to_Orchestrator-Test_GitHub_Pipeline'
-          outputPath: '$(Build.ArtifactStagingDirectory)\Output'
-      - publish: $(Build.ArtifactStagingDirectory)\Output
+          outputPath: '$(Build.ArtifactStagingDirectory)'
+      - publish: $(Build.ArtifactStagingDirectory)
         artifact: drop
 
 
@@ -34,6 +34,7 @@ stages:
     jobs:
       - deployment: deployDEV
         displayName: Deploy package to DEV Orchestrator
+        pool: Default
         environment: DEV
         strategy:
          runOnce:
@@ -42,7 +43,7 @@ stages:
             - task: UiPathDeploy@2
               inputs:
                  orchestratorConnection: 'Azure_Connection_to_Orchestrator-Test_GitHub_Pipeline'
-                 packagesPath: '$(Build.ArtifactStagingDirectory)\Output'
+                 packagesPath: '$(Pipeline.Workspace)\drop\'
                  folderName: 'Finance'
                  entryPoints: 'Main.xaml'
 
