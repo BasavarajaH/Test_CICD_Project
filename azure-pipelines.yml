@@ -10,6 +10,19 @@ trigger:
 
 
 stages:
+
+  - stage: Deletefile 
+    displayName: delete build artifact
+
+    jobs: 
+    - job: DeletePackage
+      pool: Default
+      steps:
+      - task: DeleteFiles@1
+        inputs:
+          SourceFolder: '$(Pipeline.Workspace)\drop\'
+          Contents: 'myFileShare'
+
   - stage: Build
     displayName: Build Package
     jobs: 
@@ -46,7 +59,7 @@ stages:
                  packagesPath: '$(Pipeline.Workspace)\drop\'
                  folderName: 'Finance'
                  entryPoints: 'Main.xaml'
-                 
+
   - stage: CopyFiles 
     displayName: copy build artifact
     dependsOn: DeploytoDEV
@@ -62,16 +75,5 @@ stages:
           TargetFolder: 'C:\Data'
           OverWrite: true
 
-  - stage: Deletefile 
-    displayName: delete build artifact
-    dependsOn: DeploytoDEV
-    condition: succeeded()
-    jobs: 
-    - job: DeletePackage
-      pool: Default
-      steps:
-      - task: DeleteFiles@1
-        inputs:
-          SourceFolder: '$(Pipeline.Workspace)\drop\'
-          Contents: 'myFileShare'
+
 
