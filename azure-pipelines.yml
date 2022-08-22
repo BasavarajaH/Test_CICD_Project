@@ -49,10 +49,10 @@ stages:
 
   - stage: Deletefile 
     displayName: delete build artifact
-    dependsOn: Build
+    dependsOn: DeploytoDEV
     condition: succeeded()
     jobs: 
-    - job: BuildPackage
+    - job: DeletePackage
       pool: Default
       steps:
       - task: DeleteFiles@1
