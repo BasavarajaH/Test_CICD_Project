@@ -61,7 +61,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="497,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;changes in workfow&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="497,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;changes in workfow12&quot;]" />
     <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input dialog" sap:VirtualizedContainerService.HintSize="497,238" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Enter Hello or Bye" Title="Hello/Bye">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[String_Value]</OutArgument>
